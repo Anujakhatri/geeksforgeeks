@@ -1,0 +1,23 @@
+class Solution:
+    def is_palindrome (self, s):
+        # code here
+        return s == s[::-1]
+        
+    def palinParts(self,s):
+        result =[]
+        
+        def backtrack(start,path):
+            if start==len(s):
+                result.append(path[:])
+                return
+            
+            for end in range(start+1, len(s) +1):
+                substring = s[start:end]
+                if self.is_palindrome(substring):
+                    path.append(substring)
+                    backtrack(end,path)
+                    path.pop()
+                    
+        backtrack(0,[]) 
+        return result
+
