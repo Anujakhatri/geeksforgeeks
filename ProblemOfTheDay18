@@ -1,3 +1,5 @@
+#All Palindromic Partitions
+#Given a string s, find all possible ways to partition it such that every substring in the partition is a palindrome.
 
 class Solution:
     def is_palindrome (self, s):
