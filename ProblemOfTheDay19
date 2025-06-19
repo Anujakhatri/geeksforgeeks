@@ -1,0 +1,25 @@
+#Case-specific Sorting of Strings
+#Given a string s consisting of only uppercase and lowercase characters. The task is to sort uppercase and lowercase letters separately such that if the ith place in the original string had an Uppercase character then it should not have a lowercase character after being sorted and vice versa.
+
+class Solution:
+    def caseSort(self,s):
+        #code here
+        upper_chars=sorted([c for c in s if c.isupper()]) #seperate charater by upper
+        lower_chars=sorted([c for c in s if c.islower()]) #seperate charater by lower
+        
+        #create a pointer for tracking
+        upper_index=0
+        lower_index=0
+        
+        result=[]
+        
+        for c in s:
+            if c.isupper():
+                result.append(upper_chars[upper_index])
+                upper_index+=1
+            else:
+                result.append(lower_chars[lower_index])
+                lower_index+=1
+                
+        return ''.join(result)
+        
