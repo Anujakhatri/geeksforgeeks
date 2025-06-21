@@ -1,0 +1,35 @@
+#Police and Thieves
+#Given an array arr[], where each element contains either a 'P' for policeman or a 'T' for thief. Find the maximum number of thieves that can be caught by the police. 
+
+#Keep in mind the following conditions :
+# -Each policeman can catch only one thief.
+# -A policeman cannot catch a thief who is more than k units away from him.
+
+from collections import deque
+
+class Solution:
+    def catchThieves(self, arr, k):
+        #code  here
+        
+        
+        police=deque()
+        thieves=deque()
+        
+        
+        for i, val in enumerate(arr):
+            if val =='P':
+                police.append(i)
+                
+            elif val=='T':
+                thieves.append(i)
+        caught=0        
+        while police and thieves:
+            if abs(police[0]-thieves[0]) <= k:
+                caught+=1
+                police.popleft()
+                thieves.popleft()
+            elif thieves[0] < police[0]:
+                thieves.popleft()
+            else:
+                police.popleft()
+        return caught        
