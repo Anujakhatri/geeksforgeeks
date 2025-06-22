@@ -2,3 +2,28 @@
 #Given an array arr[] of distinct positive integers. Your task is to find the largest subset such that for every pair of elements (x, y) in the subset, either x divides y or y divides x.
 #Note : If multiple subsets of the same maximum length exist, return the one that is lexicographically greatest, after sorting the subset in ascending order.
 
+class Solution:
+    def largestSubset(self, arr):
+        arr.sort()
+        n = len(arr)
+        dp = [1] * n
+        subsets = [[num] for num in arr]
+        
+        max_len = 1
+        max_index = 0
+        
+        for i in range(n):
+            for j in range(i):
+                if arr[i] % arr[j] == 0:
+                    if dp[j] + 1 > dp[i]:
+                        dp[i] = dp[j] + 1
+                        subsets[i] = subsets[j] + [arr[i]]
+                    elif dp[j] + 1 == dp[i]:
+                        candidate = subsets[j] + [arr[i]]
+                        if candidate > subsets[i]:
+                            subsets[i] = candidate
+            if dp[i] > max_len or (dp[i] == max_len and subsets[i] > subsets[max_index]):
+                max_len = dp[i]
+                max_index = i
+        
+        return subsets[max_index]
