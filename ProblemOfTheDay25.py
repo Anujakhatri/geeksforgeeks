@@ -1,4 +1,4 @@
-#Check if frequencies can be equa
+#Check if frequencies can be equal
 #Given a string s consisting only lowercase alphabetic characters, check whether it is possible to remove at most one character
 # such that the  frequency of each distinct character in the string becomes same. Return true if it is possible; otherwise, return false.
 
